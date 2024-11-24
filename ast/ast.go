@@ -26,6 +26,11 @@ type LetStatement struct {
 	Value Expression
 }
 
+type Identifier struct {
+	Token token.Token // the token.IDENT token
+	Value string
+}
+
 func (p *Program) TokenLiteral() string {
 	if len(p.Statements) > 0 {
 		return p.Statements[0].TokenLiteral()
@@ -37,10 +42,5 @@ func (p *Program) TokenLiteral() string {
 func (ls *LetStatement) statementNode()		  {}
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
-type Identifier struct {
-	Token token.Token // the token.IDENT token
-	Value string
-}
-
 func (i *Identifier) expressionNode() 	   {}
-func (i *Identifier) tokenLiteral() string { return i.Token.Literal}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal}
